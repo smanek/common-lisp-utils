@@ -16,7 +16,8 @@
 	   :md5sum-file
 	   :md5sum-string
 	   :hash-password
-
+	   :get-signature
+	   
 	   :path-equal ;;file
 	   :slurp
 
