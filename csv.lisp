@@ -6,6 +6,9 @@
 			    (loop for (key . val) in alist
 			       collect (format nil "~A,~A~%" key val)))))
 
+(defun write-csv (data)
+  (format nil "~{~A~^,~}" data))
+
 (defun read-csv-stream (stream &key (state 0) (working-result nil) (results nil) (line nil)) 
   "A (sort-of) finite state machine to properly parse a csv file."
   ;;State 0 is normal unquoted state, in which we're just naively reading non-special characters

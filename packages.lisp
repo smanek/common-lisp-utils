@@ -51,6 +51,7 @@
 	   :get-random-item
 
 	   :alist-as-csv ;;csv.lisp
+	   :write-csv
 	   :read-csv-stream
 	   :parse-comma-delimited-list
 	   :comma-delimited-list-integers
