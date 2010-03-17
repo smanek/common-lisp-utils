@@ -7,7 +7,8 @@
 			       collect (format nil "~A,~A~%" key val)))))
 
 (defun write-csv (data)
-  (cond ((atom data) (princ data))
+  (cond ((stringp data) data)
+	((atom data) (write-to-string data))
 	(t (format nil "~{~A~^,~}" data))))
 
 (defun read-csv-stream (stream &key (state 0) (working-result nil) (results nil) (line nil)) 
