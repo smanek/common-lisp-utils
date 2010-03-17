@@ -56,7 +56,8 @@
 	   :parse-comma-delimited-list
 	   :comma-delimited-list-integers
 	   
-	   :class-slot-names ;;misc.lisp
+	   :alist-to-plist ;;misc.lisp
+	   :class-slot-names
 	   :while
 	   :squash
 	   :palinp

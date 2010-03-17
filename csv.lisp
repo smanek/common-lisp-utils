@@ -7,7 +7,8 @@
 			       collect (format nil "~A,~A~%" key val)))))
 
 (defun write-csv (data)
-  (format nil "~{~A~^,~}" data))
+  (cond ((atom data) (princ data))
+	(t (format nil "~{~A~^,~}" data))))
 
 (defun read-csv-stream (stream &key (state 0) (working-result nil) (results nil) (line nil)) 
   "A (sort-of) finite state machine to properly parse a csv file."

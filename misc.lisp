@@ -1,5 +1,9 @@
 (in-package :postabon-helper)
 
+(defun alist-to-plist (alist)
+  (loop for (k . v) in alist
+     appending (list k v)))
+
 (defun class-slot-names (class-name &key (direct t))
   (mapcar #'sb-mop:slot-definition-name
 	  (funcall (if direct
