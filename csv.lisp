@@ -54,6 +54,9 @@
 		       (trim s))
 		   (split-on-delimiter string #\,)))))
 
+(defun comma-delimited-list-keywords (string)
+  (mapcar #'make-keyword (parse-comma-delimited-list string)))
+
 (defun comma-delimited-list-integers (str) 
   (remove-if #'null 
 	     (mapcar #'(lambda (str)
@@ -61,4 +64,11 @@
 			     (parse-integer str)
 			   (t nil)))
 		     (parse-comma-delimited-list str))))
+
+(defun comma-delimited-list-floats (str) 
+  (let ((res (mapcar #'parse-float 
+	  (parse-comma-delimited-list str))))
+    (if (some #'null res)
+	(error "Unable to parse ~A into floats" str)
+	res)))
 

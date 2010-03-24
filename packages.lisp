@@ -55,6 +55,8 @@
 	   :read-csv-stream
 	   :parse-comma-delimited-list
 	   :comma-delimited-list-integers
+	   :comma-delimited-list-floats
+	   :comma-delimited-list-keywords
 	   
 	   :alist-to-plist ;;misc.lisp
 	   :class-slot-names
@@ -63,4 +65,6 @@
 	   :palinp
 	   :range
 	   :safe-subseq
-	   :always-true))
+	   :always-true
+	   :get-subclasses
+	   :subclass-of))

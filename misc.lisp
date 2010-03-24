@@ -10,6 +10,21 @@
 		       #'sb-mop:class-direct-slots
 		       #'sb-mop:class-slots) (find-class class-name))))
 
+;;note: assuming I don't need to make it tail recursive, since I can't imagine
+;;a class hierarchy that deep.
+(defun get-subclasses (class)
+  (typecase class
+    (symbol (get-subclasses (find-class class)))
+    (class (cons class (mapcan #'(lambda (c)
+				   (get-subclasses c))
+			       (sb-mop:class-direct-subclasses class))))
+    (null nil)))
+
+(defun subclass-of (child super)
+  (when (member (find-class child)
+		(get-subclasses super))
+    t))
+
 (defmacro while (expression &body body)
   `(tagbody
     start (if (not ,expression) (go end))
