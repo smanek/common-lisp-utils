@@ -66,3 +66,10 @@
   (declare (ignore others))
   t)
 
+(defun make-numeric-test (&key min max)
+  #'(lambda (x)
+      (when (and (or (not min)
+		     (< min x))
+		 (or (not max)
+		     (> max x)))
+	t)))

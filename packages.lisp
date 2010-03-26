@@ -66,5 +66,6 @@
 	   :range
 	   :safe-subseq
 	   :always-true
+	   :make-numeric-test
 	   :get-subclasses
 	   :subclass-of))
