@@ -21,3 +21,12 @@
 
 (defun get-random-item (bag)
   (elt bag (random (length bag))))
+
+;;really stupid right now.
+;;I should eventually rewrite it with a markov chain generator
+;;that can produce text with similar statistical properties
+;;as real englinsh
+(defun get-random-english (length)
+  (format nil "~{~A~^ ~}." (cons (get-random-string (mod length 5) :alphabetic t)
+				 (loop for i from 1 upto (floor length 5)
+				    collecting (get-random-string 5 :alphabetic t)))))

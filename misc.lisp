@@ -4,11 +4,28 @@
   (loop for (k . v) in alist
      appending (list k v)))
 
-(defun class-slot-names (class-name &key (direct t))
-  (mapcar #'sb-mop:slot-definition-name
-	  (funcall (if direct
-		       #'sb-mop:class-direct-slots
-		       #'sb-mop:class-slots) (find-class class-name))))
+(defun class-slot-names (class &key (direct t))
+  (typecase class
+    (symbol (class-slot-names (find-class class)))
+    (class  (mapcar #'sb-mop:slot-definition-name
+		     (funcall (if direct
+				  #'sb-mop:class-direct-slots
+				  #'sb-mop:class-slots) class)))
+    (t (error "Unknown class"))))
+
+(defun object-to-hash (object)
+  (let ((slots (class-slot-names (class-of object)))
+	(h (make-hash-table :test #'equal)))
+    (mapc #'(lambda (slot)
+	      (setf (gethash (string-downcase slot) h) (slot-value object slot)))
+	  slots)
+    h))
+
+(defun print-hash-table (h)
+  (loop for k being the hash-key of h
+     collecting (format nil "~A => ~A" k (gethash k h)) into line
+     finally (return (format nil "~{~A~^~%~}" line))))
+
 
 ;;note: assuming I don't need to make it tail recursive, since I can't imagine
 ;;a class hierarchy that deep.

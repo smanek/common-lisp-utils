@@ -49,6 +49,7 @@
 	   :get-random-string ;;random.lisp
 	   :get-random-guid
 	   :get-random-item
+	   :get-random-english
 
 	   :alist-as-csv ;;csv.lisp
 	   :write-csv
@@ -60,6 +61,8 @@
 	   
 	   :alist-to-plist ;;misc.lisp
 	   :class-slot-names
+	   :object-to-hash
+	   :print-hash-table
 	   :while
 	   :squash
 	   :palinp
