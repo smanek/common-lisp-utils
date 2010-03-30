@@ -21,6 +21,8 @@
 	   :path-equal ;;file
 	   :slurp
 
+	   :get-current-commit ;;git
+
 	   :split-on-delimiter ;;string
 	   :trim
 	   :parse-float
