@@ -4,6 +4,13 @@
   (loop for (k . v) in alist
      appending (list k v)))
 
+
+(defun alist-to-hash (alist)
+  (loop for (k . v) in alist
+     with hash = (make-hash-table :test #'equal)
+     do (setf (gethash k hash) v)
+     finally (return hash)))
+
 (defun class-slot-names (class &key (direct t))
   (typecase class
     (symbol (class-slot-names (find-class class)))

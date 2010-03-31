@@ -50,9 +50,14 @@
 (defun parse-comma-delimited-list (string) 
   (cond ((null string) nil)
 	((string= string "") nil)
-	(t (mapcar #'(lambda (s) 
+	(t (mapcar #'(lambda (s)
 		       (trim s))
 		   (split-on-delimiter string #\,)))))
+
+(defun comma-delimited-list-sybmols (string)
+  (mapcar #'intern 
+	  (mapcar #'string-upcase 
+		  (parse-comma-delimited-list string))))
 
 (defun comma-delimited-list-keywords (string)
   (mapcar #'make-keyword (parse-comma-delimited-list string)))
