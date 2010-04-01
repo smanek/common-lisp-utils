@@ -57,7 +57,6 @@
 	   :write-csv
 	   :read-csv-stream
 	   :parse-comma-delimited-list
-	   :comma-delimited-list-symbols
 	   :comma-delimited-list-integers
 	   :comma-delimited-list-floats
 	   :comma-delimited-list-keywords

@@ -42,12 +42,17 @@
     (class (cons class (mapcan #'(lambda (c)
 				   (get-subclasses c))
 			       (sb-mop:class-direct-subclasses class))))
-    (null nil)))
+    (null  nil)))
 
 (defun subclass-of (child super)
-  (when (member (find-class child)
-		(get-subclasses super))
-    t))
+  (handler-case 
+      (cond ((typep child 'symbol)
+	     (subclass-of (find-class child) super))
+	    ((typep super 'symbol)
+	     (subclass-of child (find-class super)))
+	    (t (member child
+		       (get-subclasses super) :test #'equalp)))
+    (t () nil)))
 
 (defmacro while (expression &body body)
   `(tagbody
