@@ -16,6 +16,8 @@
 	  :depends-on ("packages"))
    (:file "file"
 	  :depends-on ("packages"))
+   (:file "system"
+	  :depends-on ("file"))
    (:file "git"
 	  :depends-on ("packages" "file"))
    (:file "string"

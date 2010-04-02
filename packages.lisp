@@ -20,6 +20,9 @@
 	   
 	   :path-equal ;;file
 	   :slurp
+	   
+	   :get-system-info ;;system
+	   :run-at-shell
 
 	   :get-current-commit ;;git
 
