@@ -10,12 +10,12 @@
 	(cons :mem (get-mem-stats))))
 
 (defun run-at-shell (bin &optional args)
-  (with-output-to-string (str)
-    (let ((process (sb-ext:run-program bin args
-				       :wait t
-				       :search t
-				       :output str)))
-      (values str (sb-ext:process-exit-code process)))))
+  (let* ((exit-code 0)
+	 (str (with-output-to-string (str)
+		(setf exit-code (sb-ext:process-exit-code 
+				 (sb-ext:process-wait 
+				  (sb-ext:run-program bin args :search t :output str)))))))
+    (values str exit-code)))
 
 ;;TODO: It just gets the first IP for now. Eventually, I want them all ...
 (defun get-ips ()
