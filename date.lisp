@@ -21,7 +21,12 @@ Monday is 0."
 
 (defun smart-date (date) 
   (let ((diff (- (get-universal-time) date)))
-    (cond ((< diff 60) (format nil "~A second~:p ago" diff))
+    (cond ((< diff -604800) (format nil "~A week~:p from now" (floor (/ diff -604800))))
+	  ((< diff -86400) (format nil "~A day~:p from now" (floor (/ diff -86400))))
+	  ((< diff -3600) (format nil "~A hour~:p from now" (floor (/ diff -3600))))
+	  ((< diff -60) (format nil "~A minute~:p from now" (floor (/ diff -60))))
+	  ((< diff 0) (format nil "~A second~:p from now" (- 0 diff)))
+	  ((< diff 60) (format nil "~A second~:p ago" diff))
 	  ((< diff 3600) (format nil "~A minute~:p ago" (floor (/ diff 60))))
 	  ((< diff 86400) (format nil "~A hour~:p ago" (floor (/ diff 3600))))
 	  (t (format nil "~A day~:p ago" (floor (/ diff 86400)))))))
