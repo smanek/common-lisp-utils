@@ -77,4 +77,5 @@
 	   :always-true
 	   :make-numeric-test
 	   :get-subclasses
-	   :subclass-of))
+	   :subclass-of
+	   :multi-mapcar))

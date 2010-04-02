@@ -102,3 +102,12 @@
 		 (or (not max)
 		     (> max x)))
 	t)))
+
+(defun multi-mapcar (list &rest fns)
+  (assert (not (null fns)))
+  (mapcar #'(lambda (a)
+	      (loop for fn in fns
+		 with res = a
+		 do (setf res (funcall fn res))
+		 finally (return res)))
+	  list))
