@@ -78,4 +78,5 @@
 	   :make-numeric-test
 	   :get-subclasses
 	   :subclass-of
-	   :multi-mapcar))
+	   :multi-mapcar
+	   :all-unique-p))

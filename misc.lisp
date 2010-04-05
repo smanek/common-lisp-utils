@@ -111,3 +111,14 @@
 		 do (setf res (funcall fn res))
 		 finally (return res)))
 	  list))
+
+;;TODO: this is O(n^2).
+;;Might want to optimize to be O(n) when test is eq, equal, or equalp 
+;;(by using a hash table)
+(defun all-unique-p (lst &key (test #'eq))
+  (let ((uniques (loop for item in lst
+		    with res = nil
+		    do (pushnew item res :test test)
+		    finally (return res))))
+    (if (= (length uniques) (length lst))
+	t)))
