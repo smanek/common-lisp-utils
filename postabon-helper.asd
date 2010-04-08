@@ -6,13 +6,15 @@
 (in-package :postabon-helper-asd)
 
 (defsystem :postabon-helper
-  :depends-on (:cl-ppcre :ironclad :cl-fad)
+  :depends-on (:cl-ppcre :ironclad :cl-fad :cl-heap)
   :version "0.01"
   :components
   ((:file "packages")
    (:file "date"
 	  :depends-on ("packages"))
    (:file "crypto"
+	  :depends-on ("packages"))
+   (:file "memoize"
 	  :depends-on ("packages"))
    (:file "file"
 	  :depends-on ("packages"))

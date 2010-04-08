@@ -18,6 +18,8 @@
 	   :hash-password
 	   :get-signature
 	   
+	   :memoize-fn ;;memoize
+
 	   :path-equal ;;file
 	   :slurp
 	   
