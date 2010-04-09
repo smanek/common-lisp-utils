@@ -126,7 +126,9 @@
     (concatenate 'string str suffix)))
 
 (defun make-keyword (str)
-  (intern (string-upcase str) "KEYWORD"))
+  (let ((res   (intern (string-upcase str) "KEYWORD")))
+    (when (not (or (eq res :||) (eq res :nil)))
+      res)))
 
 (defun nonempty-string (str)
   (let ((trimmed (trim str)))
