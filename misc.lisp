@@ -97,11 +97,15 @@
 
 (defun make-numeric-test (&key min max)
   #'(lambda (x)
-      (when (and (or (not min)
-		     (< min x))
-		 (or (not max)
-		     (> max x)))
-	t)))
+      (let ((n (typecase x
+		 (number x)
+		 (sequence (length x))
+		 (t (error "Unknown argument (~A) to numeric test" x)))))
+	(when (and (or (not min)
+		       (< min n))
+		   (or (not max)
+		       (> max n)))
+	  t))))
 
 (defun multi-mapcar (list &rest fns)
   (assert (not (null fns)))
@@ -122,3 +126,8 @@
 		    finally (return res))))
     (if (= (length uniques) (length lst))
 	t)))
+
+
+(defun url-valid-p (url)
+  (when (cl-ppcre:scan "http://.+\\..{2,}" url)
+      t))
