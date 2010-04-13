@@ -31,6 +31,7 @@
 	   :split-on-delimiter ;;string
 	   :trim
 	   :parse-float
+	   :nonempty-boolean
 	   :radix-values
 	   :smart-distance
 	   :radix-values
