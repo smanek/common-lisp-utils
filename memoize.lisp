@@ -76,9 +76,24 @@
 				(apply fn args))))))))))
 
 (defun memoize-fn (fn-name &key (expires 30) (size 100))
-  (when (not (fboundp fn-name))
-    (error "~A is not a function" fn-name))
-  (let ((wrapper (make-memo (symbol-function fn-name) :expires expires :size size)))
-    (setf (symbol-function fn-name) wrapper)
-    fn-name))
+  (cond ((not (fboundp fn-name)) (error "~A is not a function" fn-name))
+	(t (let ((wrapper (make-memo (symbol-function fn-name) :expires expires :size size)))
+	     (setf (symbol-function fn-name) wrapper)
+	     fn-name))))
 
+(defmacro with-memoization (fns &body body)
+  (mapc #'(lambda (fn)
+	    (assert (fboundp fn)))
+	fns)
+  ;;take advantage of the fact that this is a lisp-2, and bind the closure to a var of the same name
+  ;;as the original function
+  `(let ,(mapcar #'(lambda (fn)
+		     `(,fn (make-memo (quote ,fn) :expires 60 :size 1000)))
+		 fns)
+     (labels ,(mapcar #'(lambda (fn) ;;lexically over-ride the function-symbol with a memoizing version
+			  `(,fn (&rest args)
+				(if args
+				    (funcall ,fn args)
+				    (funcall ,fn))))
+		      fns)
+       ,@body)))

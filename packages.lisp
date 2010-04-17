@@ -19,6 +19,7 @@
 	   :get-signature
 	   
 	   :memoize-fn ;;memoize
+	   :with-memoization
 
 	   :path-equal ;;file
 	   :slurp
