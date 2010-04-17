@@ -135,6 +135,10 @@
     (cond ((string= "" trimmed) nil)
 	  (t trimmed))))
 
+(defun nonempty-boolean (str)
+  (when (and str (not (string= str "")))
+    t))
+
 (defun unescape-for-html (str)
   (loop for (escaped . unescaped) in (list (cons "&lt;" "<")
 					   (cons "&gt;" ">")

@@ -32,6 +32,7 @@
 	   :split-on-delimiter ;;string
 	   :trim
 	   :parse-float
+	   :nonempty-boolean
 	   :radix-values
 	   :smart-distance
 	   :radix-values
@@ -61,6 +62,7 @@
 
 	   :alist-as-csv ;;csv.lisp
 	   :write-csv
+	   :write-csv-recursive
 	   :read-csv-stream
 	   :parse-comma-delimited-list
 	   :comma-delimited-list-integers

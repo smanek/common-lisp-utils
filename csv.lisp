@@ -11,6 +11,19 @@
 	((atom data) (write-to-string data))
 	(t (format nil "~{~A~^,~}" data))))
 
+(defun write-csv-recursive (data &optional (new-line nil))
+  (typecase data
+    (cons (concatenate 'string
+		       (when new-line (string #\Newline))
+		       (write-csv-recursive (car data) (when (typep (car data) 'cons) t)) 
+		       (when (not (null (cdr data))) ",") 
+		       (write-csv-recursive (cdr data))))
+    (null "")
+    (string data)
+    (atom (write-to-string data))))
+
+
+
 (defun read-csv-stream (stream &key (state 0) (working-result nil) (results nil) (line nil)) 
   "A (sort-of) finite state machine to properly parse a csv file."
   ;;State 0 is normal unquoted state, in which we're just naively reading non-special characters
