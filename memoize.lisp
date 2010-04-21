@@ -88,12 +88,10 @@
   ;;take advantage of the fact that this is a lisp-2, and bind the closure to a var of the same name
   ;;as the original function
   `(let ,(mapcar #'(lambda (fn)
-		     `(,fn (make-memo (quote ,fn) :expires 60 :size 1000)))
+		     `(,fn (make-memo (quote ,fn) :expires 600 :size 1000)))
 		 fns)
      (labels ,(mapcar #'(lambda (fn) ;;lexically over-ride the function-symbol with a memoizing version
 			  `(,fn (&rest args)
-				(if args
-				    (funcall ,fn args)
-				    (funcall ,fn))))
+				(apply ,fn args)))
 		      fns)
        ,@body)))

@@ -102,9 +102,9 @@
 		 (sequence (length x))
 		 (t (error "Unknown argument (~A) to numeric test" x)))))
 	(when (and (or (not min)
-		       (< min n))
+		       (<= min n))
 		   (or (not max)
-		       (> max n)))
+		       (>= max n)))
 	  t))))
 
 (defun multi-mapcar (list &rest fns)
