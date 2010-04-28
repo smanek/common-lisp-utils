@@ -8,9 +8,13 @@
 	   :smart-date
 	   :pretty-print-utime
 	   :pretty-print-date
+	   :utime-to-date
 	   :get-current-year
 	   :utime-yesterday
 	   :utime-last-week
+
+	   :curry  ;;functional
+	   :compose 
 
 	   :octet-array-string ;;crypto
 	   :md5sum-file

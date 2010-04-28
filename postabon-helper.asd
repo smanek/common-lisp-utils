@@ -12,6 +12,8 @@
   ((:file "packages")
    (:file "date"
 	  :depends-on ("packages"))
+   (:file "functional"
+	  :depends-on ("packages"))
    (:file "crypto"
 	  :depends-on ("packages"))
    (:file "memoize"

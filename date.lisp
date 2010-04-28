@@ -48,6 +48,13 @@ Monday is 0."
 	      second
 	      (nth day-of-week day-names)))))
 
+(defun utime-to-date (&optional (utime (get-universal-time)))
+  (multiple-value-bind
+	(second minute hour date month year day-of-week dst-p tz)
+      (decode-universal-time utime)
+      (declare (ignore dst-p tz day-of-week second minute hour))
+      (format nil "~d/~2,'0d/~d" month date year)))
+
 (defun pretty-print-date (&key (utime (get-universal-time)))
   (let ((days (list "Monday"
 		    "Tuesday"
