@@ -6,8 +6,8 @@
 
 (defun compose (&rest fns)
   (if fns
-      #’(lambda (&rest args)
-	    (reduce #’funcall (butlast fns)
+      #'(lambda (&rest args)
+	    (reduce #'funcall (butlast fns)
 		      :from-end t
 		      :initial-value (apply (car (last fns)) args)))
-	#’identity))
+      #'identity))
