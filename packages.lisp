@@ -15,7 +15,8 @@
 
 	   :curry  ;;functional
 	   :compose 
-
+	   :pmapcar
+	   
 	   :octet-array-string ;;crypto
 	   :md5sum-file
 	   :md5sum-string

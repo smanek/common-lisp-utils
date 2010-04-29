@@ -11,3 +11,9 @@
 		      :from-end t
 		      :initial-value (apply (car (last fns)) args)))
       #'identity))
+
+(defun pmapcar (f list)
+  (let ((result (mapcar #'(lambda (n) 
+			    (pcall:pexec (funcall f n))) 
+			list)))
+    (map-into result #'pcall:join result)))

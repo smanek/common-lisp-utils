@@ -6,7 +6,7 @@
 (in-package :postabon-helper-asd)
 
 (defsystem :postabon-helper
-  :depends-on (:cl-ppcre :ironclad :cl-fad :cl-heap)
+  :depends-on (:cl-ppcre :ironclad :cl-fad :cl-heap :pcall)
   :version "0.01"
   :components
   ((:file "packages")
