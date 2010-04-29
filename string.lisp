@@ -159,3 +159,9 @@
   (if (< (length str) len)
       str
       (concatenate 'string (subseq str 0 (- len 3)) "...")))
+
+(defun title-to-url (title)
+  (join-strings "-" 
+		(mapcar #'(lambda (word)
+			    (cl-ppcre:regex-replace-all "\\W" word ""))
+			(cl-ppcre:split "\\s+" (string-downcase title)))))
