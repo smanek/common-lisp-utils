@@ -50,7 +50,7 @@
 	   :unescape-for-html
 	   :nonempty-float
 	   :truncate-string
-	   
+	   :title-to-url
 
 	   :degrees-to-radians ;;from math.lisp
 	   :naive-primep
