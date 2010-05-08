@@ -3,7 +3,26 @@
 (defpackage "POSTABON-HELPER"
   (:nicknames "helper" "misc")
   (:use :cl :asdf)
-  (:export :day-of-week ;;date
+  (:export :coordinate ;coordinate
+	   :get-lat
+	   :get-long
+	   :get-address
+	   :deg-to-radian
+	   :make-coordinate
+	   :*cambridge*
+	   :*naperville*
+	   :*nyc*
+	   :distance-approx
+	   :distance
+	   :southp
+	   :northp
+	   :eastp
+	   :westp
+	   :coordinate=
+	   :near
+	   :*earth-radius*
+   
+	   :day-of-week ;;date
 	   :days-in-month
 	   :smart-date
 	   :pretty-print-utime

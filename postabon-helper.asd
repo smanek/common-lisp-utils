@@ -10,6 +10,8 @@
   :version "0.01"
   :components
   ((:file "packages")
+   (:file "coordinate"
+	  :depends-on ("packages"))
    (:file "date"
 	  :depends-on ("packages"))
    (:file "functional"
